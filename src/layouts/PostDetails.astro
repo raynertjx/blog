@@ -6,7 +6,7 @@ import Tag from "@components/Tag.astro";
 import Datetime from "@components/Datetime";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
-import ShareLinks from "@components/ShareLinks.astro";
+// import ShareLinks from "@components/ShareLinks.astro";
 import { SITE } from "@config";
 
 export interface Props {
@@ -21,6 +21,7 @@ const {
   author,
   description,
   ogImage,
+  readingTime,
   canonicalURL,
   pubDatetime,
   modDatetime,
@@ -83,16 +84,16 @@ const nextPost =
       modDatetime={modDatetime}
       size="lg"
       className="my-2"
+      readingTime={readingTime}
       editPost={editPost}
       postId={post.id}
     />
+    <ul>
+      {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
+    </ul>
     <article id="article" class="prose mx-auto mt-8 max-w-3xl">
       <Content />
     </article>
-
-    <ul class="my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
-    </ul>
 
     <div
       class="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4"
@@ -109,7 +110,7 @@ const nextPost =
         <span>Back to Top</span>
       </button>
 
-      <ShareLinks />
+      <!-- <ShareLinks /> -->
     </div>
 
     <hr class="my-6 border-dashed" />

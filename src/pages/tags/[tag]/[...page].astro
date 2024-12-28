@@ -12,7 +12,6 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 
   return tags.flatMap(({ tag, tagName }) => {
     const tagPosts = getPostsByTag(posts, tag);
-
     return paginate(tagPosts, {
       params: { tag },
       props: { tagName },
